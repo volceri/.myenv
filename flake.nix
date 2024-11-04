@@ -14,7 +14,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: 
+  outputs = inputs@{ self, ... }:
 	let
 		
 	    systemSettings = {
