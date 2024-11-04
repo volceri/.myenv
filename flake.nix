@@ -31,7 +31,7 @@
             grubDevice = "nodev"; 
             gpuType = "intel"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
         };
-+
+
         # ----- USER SETTINGS ----- #
         userSettings = rec {
             username = "volceri"; # username
