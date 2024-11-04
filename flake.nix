@@ -24,12 +24,12 @@
             timezone = "Europe/Lisbon"; # select timezone
             locale = "en_US.UTF-8"; # select locale
             # uefi or bios (Patched during install)
-            bootMode = ""; 
+            bootMode = "uefi"; 
             bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
             # device identifier for grub; only used for legacy (bios) boot mode
             # (Patched during install)
-            grubDevice = ""; 
-            gpuType = ""; # amd, intel or nvidia; only makes some slight mods for amd at the moment
+            grubDevice = "nodev"; 
+            gpuType = "intel"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
         };
 +
         # ----- USER SETTINGS ----- #
