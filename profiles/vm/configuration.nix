@@ -11,16 +11,18 @@
     boot = {
         loader = {
             systemd-boot = {
-                enable = if (systemSettings.bootMode == "uefi") then true else false;
+                #enable = if (systemSettings.bootMode == "uefi") then true else false;
+                enable = false;
             };
             efi = {
                 canTouchEfiVariables = if (systemSettings.bootMode == "uefi") then true else false;
                 efiSysMountPoint = systemSettings.bootMountPath; # does nothing if running bios rather than uefi
             };
             grub = {
-                enable = if (systemSettings.bootMode == "uefi") then false else true;
+                #enable = if (systemSettings.bootMode == "uefi") then false else true;
+                enable = true;
                 device = systemSettings.grubDevice;
-                #useOSProber = true;
+                useOSProber = true;
             };
         };
     };    
