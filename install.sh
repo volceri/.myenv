@@ -12,10 +12,12 @@ fi
 nix-shell -p git --command "c $SCRIPT_DIR"
 
 # Generate hardware config for new system
+echo "Generating hardware config for new system"
 sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix
 
 # Check if uefi or bios
 if [ -d /sys/firmware/efi/efivars ]; then
+    echo "Using uefi"
     sed -i "0,/bootMode.*=.*\".*\";/s//bootMode = \"uefi\";/" $SCRIPT_DIR/flake.nix
 else
     sed -i "0,/bootMode.*=.*\".*\";/s//bootMode = \"bios\";/" $SCRIPT_DIR/flake.nix
@@ -33,12 +35,14 @@ fi
 if [ -z "$EDITOR" ]; then
     EDITOR=nano;
 fi
+echo "Using $EDITOR to edit flake.nix"
 $EDITOR $SCRIPT_DIR/flake.nix;
 
 # Permissions for files that should be owned by root
 # sudo $SCRIPT_DIR/harden.sh $SCRIPT_DIR;
 
 # Rebuild system
+echo "Rebuilding the system"
 sudo nixos-rebuild switch --flake $SCRIPT_DIR#system;
 
 # Install and build home-manager configuration
