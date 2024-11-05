@@ -98,7 +98,7 @@
         # otherwise use patched nixos-unstable nixpkgs
         lib = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "vm"))
              then
-               inputs.nixpkgs-stable.lib
+               inputs.nixpkgs.lib
              else
                inputs.nixpkgs-unstable.lib);
 
