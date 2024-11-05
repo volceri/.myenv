@@ -42,6 +42,9 @@ $EDITOR $SCRIPT_DIR/flake.nix || exit
 # Permissions for files that should be owned by root
 # sudo $SCRIPT_DIR/harden.sh $SCRIPT_DIR
 
+echo "Adding changes to Git"
+git add *
+
 # Rebuild system
 echo "Rebuilding the system"
 sudo nixos-rebuild switch --flake $SCRIPT_DIR#system  || exit
