@@ -2,10 +2,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ../../system/hardware-configuration.nix
       ../../system/security/gpg.nix
-      ("../../system/wm/"+(userSettings.wm)+".nix") # My window manager
+      (./. + "../../../system/wm"+("/"+userSettings.wm)+".nix") # My window manager
     ];
 
   # Bootloader.
