@@ -39,7 +39,7 @@
             email = "volceri.davila@gmail.com"; # email (used for certain configurations)
             dotfilesDir = "~/.myenv"; # absolute path of the local repo
             theme = "io"; # selcted theme from my themes directory (./themes/)
-            wm = "x11"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
+            wm = "lxqt"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
             # window manager type (hyprland or x11) translator
             wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
             browser = "firefox"; # Default browser; must select one from ./user/app/browser/
