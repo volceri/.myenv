@@ -11,7 +11,9 @@
     home.stateVersion = "24.05"; # Please read the comment before changing.
     home.username = userSettings.username;
     home.homeDirectory = "/home/"+userSettings.username;   
-    home.packages = [ git ];
+    home.packages = (with pkgs; [ 
+        git 
+    ]);
     home.file = {};
     home.sessionVariables = {};
 }
