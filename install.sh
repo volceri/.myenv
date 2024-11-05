@@ -9,7 +9,8 @@ if [ $# -gt 0 ]
   else
     SCRIPT_DIR=~/.myenv
 fi
-nix-shell -p git --command "c $SCRIPT_DIR"
+
+#nix-shell -p git --command "git clone https://github.com/volceri/.myenv $SCRIPT_DIR"
 
 # Generate hardware config for new system
 echo "Generating hardware config for new system"
