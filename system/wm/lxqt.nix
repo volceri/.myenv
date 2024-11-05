@@ -10,7 +10,7 @@
   services.xserver = {
     enable = true;    
     #xkbOptions = "caps:escape";
-    excludePackages = [ pkgs.xterm ];
+    #excludePackages = [ pkgs.xterm ];
     xkb = {
       layout = "us";
       variant = "";
