@@ -4,6 +4,7 @@
     imports = [
         ../../user/shell/sh.nix     
         ../../user/app/git/git.nix # My git config
+	../../user/app/editors/vscode.nix
     ];
     
     programs.home-manager.enable = true;
