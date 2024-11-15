@@ -2,15 +2,15 @@
   description = "My Flake";
 
   inputs = {
-    nixpkgs.url                 = "nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url        = "nixpkgs/nixos-unstable";
-    home-manager-unstable       = {
-        url                     = "github:nix-community/home-manager/master";
-        inputs.nixpkgs.follows  = "nixpkgs-unstable";
+    nixpkgs-stable.url              = "nixpkgs-stable/nixos-24.05";
+    nixpkgs.url                     = "nixpkgs-stable/nixos-unstable";
+    home-manager-unstable          = {
+        url                         = "github:nix-community/home-manager/master";
+        inputs.nixpkgs-stable.follows  = "nixpkgs";
     };
     home-manager-stable         = {
         url                     = "github:nix-community/home-manager/release-24.05";
-        inputs.nixpkgs.follows  = "nixpkgs";
+        inputs.nixpkgs-stable.follows  = "nixpkgs-stable";
     };
   };
 
@@ -68,7 +68,7 @@
         };
 
         # configure pkgs
-        pkgs-stable = import inputs.nixpkgs {
+        pkgs-stable = import inputs.nixpkgs-stable {
             system = systemSettings.system;
             config = {
                 allowUnfree = true;
@@ -76,7 +76,7 @@
             };
         };
 
-        pkgs-unstable = import inputs.nixpkgs-unstable {
+        pkgs-unstable = import inputs.nixpkgs {
             system = systemSettings.system;
             config = {
                 allowUnfree = true;
@@ -88,36 +88,36 @@
 
         pkgs = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "vm"))
             then
-                pkgs-stable
-            else
                 pkgs-unstable
+            else
+                pkgs-stable
         ); 
         
         # configure lib
-        # use nixpkgs if running a server (homelab or vm profile)
-        # otherwise use patched nixos-unstable nixpkgs
+        # use nixpkgs-stable if running a server (homelab or vm profile)
+        # otherwise use patched nixos-unstable nixpkgs-stable
         lib = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "vm"))
              then
                inputs.nixpkgs.lib
              else
-               inputs.nixpkgs-unstable.lib);
+               inputs.nixpkgs-stable.lib);
 
         # use home-manager-stable if running a server (homelab or vm profile)
         # otherwise use home-manager-unstable
         home-manager = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "vm"))
             then
-                inputs.home-manager-stable
+                inputs.home-manager-unstable
             else
-                inputs.home-manager-unstable);
+                inputs.home-manager-stable);
         
         # Systems that can run tests:
         supportedSystems = [ "x86_64-linux" ];
 
         # Function to generate a set based on supported systems:
-        forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
+        forAllSystems = inputs.nixpkgs-stable.lib.genAttrs supportedSystems;
 
-        # Attribute set of nixpkgs for each system:
-        nixpkgsFor = forAllSystems (system: import inputs.nixpkgs { inherit system; });
+        # Attribute set of nixpkgs-stable for each system:
+        nixpkgs-stableFor = forAllSystems (system: import inputs.nixpkgs-stable { inherit system; });
 	in {
 		nixosConfigurations = {
             system = lib.nixosSystem {
@@ -151,7 +151,7 @@
         };
 
         packages = forAllSystems (system:
-            let pkgs = nixpkgsFor.${system};
+            let pkgs = nixpkgs-stableFor.${system};
             in {
                 default = self.packages.${system}.install;
 
