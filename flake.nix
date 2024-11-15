@@ -2,8 +2,8 @@
   description = "My Flake";
 
   inputs = {
-    nixpkgs-stable.url              = "nixpkgs-stable/nixos-24.05";
-    nixpkgs.url                     = "nixpkgs-stable/nixos-unstable";
+    nixpkgs-stable.url              = "nixpkgs/nixos-24.05";
+    nixpkgs.url                     = "nixpkgs/nixos-unstable";
     home-manager-unstable          = {
         url                         = "github:nix-community/home-manager/master";
         inputs.nixpkgs.follows  = "nixpkgs";
