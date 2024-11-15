@@ -6,11 +6,11 @@
     nixpkgs.url                     = "nixpkgs-stable/nixos-unstable";
     home-manager-unstable          = {
         url                         = "github:nix-community/home-manager/master";
-        inputs.nixpkgs-stable.follows  = "nixpkgs";
+        inputs.nixpkgs.follows  = "nixpkgs";
     };
     home-manager-stable         = {
         url                     = "github:nix-community/home-manager/release-24.05";
-        inputs.nixpkgs-stable.follows  = "nixpkgs-stable";
+        inputs.nixpkgs.follows  = "nixpkgs-stable";
     };
   };
 
@@ -94,8 +94,8 @@
         ); 
         
         # configure lib
-        # use nixpkgs-stable if running a server (homelab or vm profile)
-        # otherwise use patched nixos-unstable nixpkgs-stable
+        # use nixpkgs if running a server (homelab or vm profile)
+        # otherwise use patched nixos-unstable nixpkgs
         lib = (if ((systemSettings.profile == "homelab") || (systemSettings.profile == "vm"))
              then
                inputs.nixpkgs.lib
@@ -114,10 +114,10 @@
         supportedSystems = [ "x86_64-linux" ];
 
         # Function to generate a set based on supported systems:
-        forAllSystems = inputs.nixpkgs-stable.lib.genAttrs supportedSystems;
+        forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
 
-        # Attribute set of nixpkgs-stable for each system:
-        nixpkgs-stableFor = forAllSystems (system: import inputs.nixpkgs-stable { inherit system; });
+        # Attribute set of nixpkgs for each system:
+        nixpkgsFor = forAllSystems (system: import inputs.nixpkgs { inherit system; });
 	in {
 		nixosConfigurations = {
             system = lib.nixosSystem {
@@ -151,7 +151,7 @@
         };
 
         packages = forAllSystems (system:
-            let pkgs = nixpkgs-stableFor.${system};
+            let pkgs = nixpkgsFor.${system};
             in {
                 default = self.packages.${system}.install;
 
