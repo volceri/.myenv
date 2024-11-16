@@ -1,14 +1,15 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./pipewire.nix
-              ./dbus.nix
-              ./fonts.nix
-            ];
+  imports = [
+    # ./pipewire.nix
+    # ./dbus.nix
+    # ./fonts.nix
+  ];
 
   # Configure X11
   services.xserver = {
-    enable = true;    
+    enable = true;
     #xkbOptions = "caps:escape";
     #excludePackages = [ pkgs.xterm ];
     xkb = {
@@ -18,11 +19,11 @@
     displayManager = {
       lightdm.enable = true;
       #sessionCommands = ''
-        #xset -dpms
-        #xset s blank
-        #xset r rate 350 50
-        #xset s 300
-        #${pkgs.lightlocker}/bin/light-locker --idle-hint &
+      #xset -dpms
+      #xset s blank
+      #xset r rate 350 50
+      #xset s 300
+      #${pkgs.lightlocker}/bin/light-locker --idle-hint &
       #'';    
     };
     desktopManager = {

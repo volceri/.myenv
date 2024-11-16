@@ -5,9 +5,9 @@
     ../../system/networking
     ../../system/ssh
     ../../system/wm/lxqt.nix
-    # ../../system/audio/pipewire.nix
-    # ../../system/wm/dbus.nix
-    # ../../system/wm/fonts.nix
+    ../../system/wm/dbus.nix
+    ../../system/wm/fonts.nix
+    ../../system/audio/pipewire.nix
     ../../system/security/gpg.nix
   ];
 
