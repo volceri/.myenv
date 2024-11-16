@@ -28,6 +28,7 @@
     # };
   };
 
+  home.stateVersion = "24.05";
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
   home.packages = (with pkgs; [ ]);

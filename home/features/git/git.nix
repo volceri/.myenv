@@ -1,4 +1,4 @@
-{ config, lib, userSettings, ... }: with lib;
+{ config, lib, pkgs, userSettings, ... }: with lib;
 let
   cfg = config.features.git.git;
 
