@@ -23,9 +23,9 @@
       vscode.enable = true;
     };
 
-    wm = {
-      lxqt-x11.enable = true;
-    };
+    # wm = {
+    #   lxqt-x11.enable = true;
+    # };
   };
 
   home.username = userSettings.username;
