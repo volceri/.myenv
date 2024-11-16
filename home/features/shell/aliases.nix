@@ -9,7 +9,7 @@ let
   };
 in
 {
-  options.features.shell.fzf.enable = mkEnableOption "enable shell aliases";
+  options.features.shell.shellAliases.enable = mkEnableOption "enable shell aliases";
 
   config = mkIf cfg.enable {
 
