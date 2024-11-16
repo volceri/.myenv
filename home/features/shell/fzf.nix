@@ -1,6 +1,6 @@
 { config, lib, ... }: with lib;
 let
-  cfg = config.features.cli.fzf;
+  cfg = config.features.shell.fzf;
 in
 {
   options.features.shell.fzf.enable = mkEnableOption "enable fuzzy finder";
