@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: with lib;
+{ config, pkgs, lib, ... }: with lib;
 
 let
   cfg = config.features.shell.shellAliases;
@@ -10,7 +10,7 @@ let
 in
 {
   options.features.shell.fzf.enable = mkEnableOption "enable shell aliases";
-  
+
   config = mkIf cfg.enable {
 
     programs.bash = {
