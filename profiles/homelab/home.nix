@@ -2,11 +2,11 @@
 
 {
   imports = [
+    ../../home/wm
     ../../home
     ../../home/features/shell
     ../../home/features/git/git.nix
     ../../home/features/editors/vscode.nix
-    ../../home/wm
   ];
 
   features = {
