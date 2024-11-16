@@ -4,7 +4,10 @@
     ../common
     ../../system/networking
     ../../system/ssh
-    ../../system/audio/pipewire.nix
+    ../../system/wm/lxqt.nix
+    # ../../system/audio/pipewire.nix
+    # ../../system/wm/dbus.nix
+    # ../../system/wm/fonts.nix
     ../../system/security/gpg.nix
   ];
 

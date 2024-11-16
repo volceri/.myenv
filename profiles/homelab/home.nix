@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../home/wm
     ../../home
+    ../../home/wm
     ../../home/features/shell
     ../../home/features/git/git.nix
     ../../home/features/editors/vscode.nix
