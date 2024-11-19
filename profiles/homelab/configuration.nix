@@ -4,7 +4,7 @@
     ../common
     ../../system/networking
     ../../system/ssh
-    ../../system/wm/lxqt.nix
+    ../../system/wm/${userSettings.wm}.nix
     ../../system/wm/dbus.nix
     ../../system/wm/fonts.nix
     ../../system/audio/pipewire.nix
@@ -43,6 +43,7 @@
   };
 
   features = {
+
     audio = {
       pipewire.enable = true;
     };
