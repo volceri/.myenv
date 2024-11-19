@@ -47,7 +47,7 @@ git add *
 
 # Rebuild system
 echo "Rebuilding the system"
-sudo nixos-rebuild switch --flake $SCRIPT_DIR#system  || exit
+sudo nixos-rebuild switch --refresh --flake $SCRIPT_DIR#system  || exit
 
 # Install and build home-manager configuration
 nix run home-manager/master --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake $SCRIPT_DIR#user
