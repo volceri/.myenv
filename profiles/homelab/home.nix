@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../../home
     ../../home/wm
     ../../home/features/shell
     ../../home/features/git/git.nix
@@ -34,4 +33,5 @@
   home.packages = (with pkgs; [ ]);
   home.file = { };
   home.sessionVariables = { };
+  programs.home-manager.enable = true;
 }
