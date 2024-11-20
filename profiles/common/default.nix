@@ -40,6 +40,8 @@
     wget
     git
     htop
+    firefox
+    google-chrome
   ];
 
   system.stateVersion = "24.05"; # Did you read the comment?
