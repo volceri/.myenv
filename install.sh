@@ -14,7 +14,7 @@ fi
 
 # Generate hardware config for new system
 echo "Generating hardware config for new system"
-sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix || exit
+#sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix || exit
 
 # Check if uefi or bios
 if [ -d /sys/firmware/efi/efivars ]; then
@@ -42,8 +42,8 @@ $EDITOR $SCRIPT_DIR/flake.nix || exit
 # Permissions for files that should be owned by root
 # sudo $SCRIPT_DIR/harden.sh $SCRIPT_DIR
 
-echo "Adding changes to Git"
-git add *
+# echo "Adding changes to Git"
+# git add *
 
 # Rebuild system
 echo "Rebuilding the system"
