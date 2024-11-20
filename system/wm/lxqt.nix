@@ -36,6 +36,6 @@
   };
 
   services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "lxqt";
+  services.xrdp.defaultWindowManager = "${pkgs.lxqt.lxqt-session}/bin/startlxqt";
   services.xrdp.openFirewall = true;
 }
