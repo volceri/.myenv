@@ -36,6 +36,6 @@
   };
 
   services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.defaultWindowManager = "xfce4-session";
   services.xrdp.openFirewall = true;
 }
