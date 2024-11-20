@@ -43,6 +43,7 @@ $EDITOR $SCRIPT_DIR/flake.nix || exit
 # sudo $SCRIPT_DIR/harden.sh $SCRIPT_DIR
 
 # echo "Adding changes to Git"
+#testing
 # git add *
 
 # Rebuild system
