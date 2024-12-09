@@ -7,6 +7,7 @@
 
     #################### Host-specific Optional Configs ####################
     common/optional/browsers/chromium.nix
+    common/optional/editors/vscode.nix
     # common/optional/desktops # default is hyprland
     # common/optional/comms
     # common/optional/helper-scripts

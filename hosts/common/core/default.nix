@@ -55,5 +55,6 @@ in
     };
   };
 
+
   # hardware.enableRedistributableFirmware = true;
 }

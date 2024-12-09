@@ -8,7 +8,7 @@ let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  users.mutableUsers = false;
+  # users.mutableUsers = false;
   users.users.${configVars.userSettings.username} = {
     isNormalUser = true;
     description = configVars.userSettings.name;

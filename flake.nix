@@ -11,10 +11,12 @@
     }@inputs:
     let
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-        #"aarch64-darwin"
-      ];
+      # Systems that can run tests:
+      supportedSystems = [ "x86_64-linux" ];
+
+      # Function to generate a set based on supported systems:
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+
       inherit (nixpkgs) lib;
       configVars = import ./vars { inherit inputs lib; };
       configLib = import ./lib { inherit lib; };
@@ -27,6 +29,7 @@
           nixpkgs
           ;
       };
+      nixpkgsFor = forAllSystems (system: import inputs.nixpkgs { inherit system; });
     in
     {
       # Custom modules to enable special functionality for nixos or home-manager oriented configs.
@@ -47,29 +50,29 @@
         import ./pkgs { inherit pkgs; }
       );
 
-      checks = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        import ./checks { inherit inputs system pkgs; }
-      );
+      # checks = forAllSystems (
+      #   system:
+      #   let
+      #     pkgs = nixpkgs.legacyPackages.${system};
+      #   in
+      #   import ./checks { inherit inputs system pkgs; }
+      # );
 
       # Nix formatter available through 'nix fmt' https://nix-community.github.io/nixpkgs-fmt
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
-      # ################### DevShell ####################
-      #
-      # Custom shell for bootstrapping on new hosts, modifying nix-config, and secrets management
+      # # ################### DevShell ####################
+      # #
+      # # Custom shell for bootstrapping on new hosts, modifying nix-config, and secrets management
 
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          checks = self.checks.${system};
-        in
-        import ./shell.nix { inherit checks pkgs; }
-      );
+      # devShells = forAllSystems (
+      #   system:
+      #   let
+      #     pkgs = nixpkgs.legacyPackages.${system};
+      #     checks = self.checks.${system};
+      #   in
+      #   import ./shell.nix { inherit checks pkgs; }
+      # );
 
       #################### NixOS Configurations ####################
       #
@@ -80,19 +83,19 @@
         homelab = lib.nixosSystem {
           inherit specialArgs;
           modules = [
-            ./hosts/${configVars.system.profile}/configuration.nix
+            ./hosts/${configVars.systemSettings.profile}/configuration.nix
           ];
         };
       };
 
        homeConfigurations = {
         user = home-manager.lib.homeManagerConfiguration {
-          inherit specialArgs;
+          pkgs = nixpkgsFor.x86_64-linux;
+          extraSpecialArgs = specialArgs;
           modules = [
             ./modules/home-manager
-            ./home/${configVars.userSettings.username}/${configVars.system.profile}.nix # Example: /home/volceri/homelab.nix
+            ./home/${configVars.userSettings.username}/${configVars.systemSettings.profile}.nix # Example: /home/volceri/homelab.nix
           ];
-          extraSpecialArgs = specialArgs;
         };
       };
     };

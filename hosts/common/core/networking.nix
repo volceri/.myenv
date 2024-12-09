@@ -1,7 +1,7 @@
 { pkgs, configVars, ... }: {
 
   networking = {
-    hostName = sconfigVars.systemSettings.hostname;
+    hostName = configVars.systemSettings.hostname;
     networkmanager.enable = true;
   };
 

@@ -38,20 +38,19 @@
   boot = {
     loader = {
       systemd-boot = {
-        enable = false;
+        enable = true;
       };
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot"
+        # efiSysMountPoint = "/boot";
       };
       grub = {
         #enable = if (systemSettings.bootMode == "uefi") then false else true;
-        enable = true;
-        device = "/dev"   ???;
-        useOSProber = true;
+        enable = false;
+        # device = "/dev/sda";
+        # useOSProber = true;
       };
     };
   };
 
-  username = configVars.userSettings.username;
 }
