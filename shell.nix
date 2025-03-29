@@ -10,28 +10,27 @@
       };
     in
     import nixpkgs { overlays = [ ]; },
-  checks,
+#   checks,
   ...
 }:
 {
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
-    inherit (checks.pre-commit-check) shellHook;
-    buildInputs = checks.pre-commit-check.enabledPackages;
+#     inherit (checks.pre-commit-check) shellHook;
+#     buildInputs = checks.pre-commit-check.enabledPackages;
 
     nativeBuildInputs = builtins.attrValues {
       inherit (pkgs)
 
-        nix
-        home-manager
-        git
-        just
-
-        age
-        ssh-to-age
-        sops
+        jq
+        awscli
+        jdk11
         ;
     };
+
+    shellHook = ''
+      export JAVA_HOME=${pkgs.jdk11}/bin
+    '';
   };
 }

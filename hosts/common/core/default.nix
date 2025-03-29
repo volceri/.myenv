@@ -17,6 +17,7 @@ in
   imports = lib.flatten [
     (configLib.scanPaths ./.)
     (configLib.relativeToRoot "hosts/common/users/${configVars.userSettings.username}")
+    inputs.home-manager.nixosModules.home-manager
     (builtins.attrValues outputs.nixosModules)
   ];
 
@@ -46,15 +47,41 @@ in
   #   inherit inputs outputs;
   # };
 
+  # nixpkgs = {
+  #   # you can add global overlays here
+  #   # overlays = builtins.attrValues outputs.overlays;
+  #   overlays = [
+  #     # Add overlays your own flake exports (from overlays and pkgs dir):
+  #     outputs.overlays.additions
+  #     outputs.overlays.modifications
+  #     inputs.alacritty-theme.overlays.default
+  #   ];
+  #   config = {
+  #     allowUnfree = true;
+  #     allowUnfreePredicate = _: true;
+  #   };
+  # };
+
+  home-manager.extraSpecialArgs = {
+    inherit inputs outputs;
+  };
+
   nixpkgs = {
-    # you can add global overlays here
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = [
+      outputs.overlays.default
+    ];
     config = {
       allowUnfree = true;
-      allowUnfreePredicate = _: true;
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
+
+  # environment.shells = with pkgs; [ zsh ];
+  # users.defaultUserShell = pkgs.zsh;
 
   # hardware.enableRedistributableFirmware = true;
 }

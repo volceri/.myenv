@@ -55,4 +55,6 @@ in
   #   };
 
   networking.firewall.allowedTCPPorts = [ sshPort ];
+  programs.ssh.startAgent = true;
+  
 }

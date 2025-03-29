@@ -1,5 +1,5 @@
 {
-  description = "EmergentMind's Nix-Config";
+  description = "My Nix-Config";
 
   outputs =
     {
@@ -21,13 +21,11 @@
       configVars = import ./vars { inherit inputs lib; };
       configLib = import ./lib { inherit lib; };
       specialArgs = {
-        inherit
-          inputs
-          outputs
-          configVars
-          configLib
-          nixpkgs
-          ;
+        inherit inputs;
+        inherit outputs;
+        inherit configVars;
+        inherit configLib;
+        inherit nixpkgs;
       };
       nixpkgsFor = forAllSystems (system: import inputs.nixpkgs { inherit system; });
     in
@@ -42,12 +40,29 @@
       overlays = import ./overlays { inherit inputs outputs; };
 
       # Custom packages to be shared or upstreamed.
-      packages = forAllSystems (
+      # packages = forAllSystems (
+      #   system:
+      #   let
+      #     pkgs = nixpkgs.legacyPackages.${system};
+      #   in
+      #   import ./pkgs { inherit pkgs; }
+      # );
+
+       packages = forAllSystems (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              self.overlays.default
+              # alacritty-theme.overlays.default
+            ];
+          };
         in
-        import ./pkgs { inherit pkgs; }
+        lib.packagesFromDirectoryRecursive {
+          callPackage = lib.callPackageWith pkgs;
+          directory = ./pkgs/common;
+        }
       );
 
       # checks = forAllSystems (
@@ -64,15 +79,12 @@
       # # ################### DevShell ####################
       # #
       # # Custom shell for bootstrapping on new hosts, modifying nix-config, and secrets management
-
-      # devShells = forAllSystems (
-      #   system:
-      #   let
-      #     pkgs = nixpkgs.legacyPackages.${system};
-      #     checks = self.checks.${system};
-      #   in
-      #   import ./shell.nix { inherit checks pkgs; }
-      # );
+      devShells = forAllSystems (
+        system:
+        import ./shell.nix { 
+          pkgs = nixpkgs.legacyPackages.${system};
+        }
+      );
 
       #################### NixOS Configurations ####################
       #
@@ -80,24 +92,47 @@
 
       nixosConfigurations = {
         # Main
+        work = lib.nixosSystem {
+          inherit specialArgs;
+          modules = [
+            # ({ pkgs, ...}: {
+            #   # install the overlay
+            #   nixpkgs.overlays = [ alacritty-theme.overlays.default ];
+            # })
+            home-manager.nixosModules.home-manager {
+              home-manager = {
+                useUserPackages = true;
+                extraSpecialArgs = specialArgs;
+              };
+            }
+            ./hosts/${configVars.systemSettings.profile}/configuration.nix
+          ];
+        };
+
         homelab = lib.nixosSystem {
           inherit specialArgs;
           modules = [
+            home-manager.nixosModules.home-manager {
+              home-manager = {
+                useUserPackages = true;
+                extraSpecialArgs = specialArgs;
+              };
+            }
             ./hosts/${configVars.systemSettings.profile}/configuration.nix
           ];
         };
       };
 
-       homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgsFor.x86_64-linux;
-          extraSpecialArgs = specialArgs;
-          modules = [
-            ./modules/home-manager
-            ./home/${configVars.userSettings.username}/${configVars.systemSettings.profile}.nix # Example: /home/volceri/homelab.nix
-          ];
-        };
-      };
+      #  homeConfigurations = {
+      #   user = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = nixpkgsFor.x86_64-linux;
+      #     extraSpecialArgs = specialArgs;
+      #     modules = [
+      #       ./modules/home-manager
+      #       ./home/${configVars.userSettings.username}/${configVars.systemSettings.profile}.nix # Example: /home/volceri/homelab.nix
+      #     ];
+      #   };
+      # };
     };
 
   inputs = {
@@ -106,18 +141,20 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # The next two are for pinning to stable vs unstable regardless of what the above is set to
     # See also 'stable-packages' and 'unstable-packages' overlays at 'overlays/default.nix"
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nixpkgs-zoom.url = "nixpkgs/24.05";
+    nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
     #################### Utilities ####################
 
-    # Declarative partitioning and formatting
+    # Declarative partitioning and  h
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -131,7 +168,7 @@
 
     # vim4LMFQR!
     nixvim = {
-      #url = "github:nix-community/nixvim/nixos-24.05";
+      #url = "github:nix-community/nixvim/nixos-24.11";
       #inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -143,9 +180,14 @@
     };
 
     # Theming
-    stylix.url = "github:danth/stylix/release-24.05";
+    stylix.url = "github:danth/stylix/release-24.11";
     # rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
 
+    # Alacritty theme
+    # alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
+
+#     nix-aws-okta.url = "git+ssh://git@git.naspersclassifieds.com/volceri.avila/nix-aws-okta.git?ref=main&shallow=2";
+#     nix-aws-okta.inputs = { };
     #################### Personal Repositories ####################
 
     # Private secrets repo.  See ./docs/secretsmgmt.md

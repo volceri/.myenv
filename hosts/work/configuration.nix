@@ -49,7 +49,7 @@
   # Force home-manager to use global packages
   home-manager.useGlobalPkgs = true;
  */
-
+ 
   # If there is a conflict file that is backed up, use this extension
   home-manager.backupFileExtension = "backup";
 
@@ -57,21 +57,21 @@
   programs.firefox.enable = true;
 
   system.stateVersion = "24.11"; # Did you read the comment?
-
+  
   # Bootloader.
   boot = {
     loader = {
       systemd-boot = {
         enable = false;
       };
-#       efi = {
-#         canTouchEfiVariables = true;
-#         #efiSysMountPoint = "/boot";
-#       };
+      efi = {
+        canTouchEfiVariables = true;
+        #efiSysMountPoint = "/boot";
+      };
       grub = {
         enable = true;
-#         efiSupport = true;
-        device = "/dev/sda";
+        efiSupport = true;
+        devices = [ "nodev" ];
         useOSProber = true;
 
         extraEntries            = ''
@@ -94,8 +94,13 @@
 
   networking.extraHosts =
   ''
-    127.0.0.1 host.docker.internal
+    127.0.0.1 myautovit.ro mystandvirtual.pt myotomoto.pl host.docker.internal myfake-apollo.com
   '';
+
+
+  services.fprintd = {
+    enable = true;
+  };
 
   # stylix.enable = true;
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";

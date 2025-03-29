@@ -17,10 +17,13 @@ in
     extraConfig = {
       log.showSignature = "true";
       init.defaultBranch = "main";
-      pull.rebase = "true";
+      pull.rebase = "false";
       url = {
-        "ssh://git@github.com" = {
-          insteadOf = "https://github.com";
+        # "ssh://git@github.com" = {
+        #   insteadOf = "https://github.com";
+        # };
+        "ssh://git@git.naspersclassifieds.com/" = {
+          insteadOf = "https://git.naspersclassifieds.com/";
         };
       };
 

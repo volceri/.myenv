@@ -14,13 +14,13 @@
     common/optional/cli/zsh.nix
     common/optional/cli/bash.nix
     common/optional/cli/aliases.nix
-#     common/optional/cli/aliases_work.nix
+    common/optional/cli/aliases_work.nix
     common/optional/cli/starship.nix
 
     common/optional/terminal/kitty.nix
 
-#     common/optional/comms/slack.nix
-#     common/optional/comms/zoom.nix
+    common/optional/comms/slack.nix
+    common/optional/comms/zoom.nix
 
     common/optional/dev/direnv.nix
     common/optional/dev/go.nix
@@ -43,7 +43,7 @@
     username = configVars.userSettings.username;
     homeDirectory = "/home/" + configVars.userSettings.username;
     file = { };
-
+    
     sessionVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
@@ -53,11 +53,14 @@
     };
 
     packages = with pkgs; [
+      openconnect
+      jetbrains.phpstorm
+      jetbrains.goland
       docker-compose
       notepadqq
     ];
 
      preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };
-
+  
 }
