@@ -51,7 +51,7 @@
  */
 
   # If there is a conflict file that is backed up, use this extension
-  home-manager.backupFileExtension = "backup";
+  home-manager.backupFileExtension = "bkp";
 
 
   programs.firefox.enable = true;
@@ -97,9 +97,8 @@
     127.0.0.1 host.docker.internal
   '';
 
-  # stylix.enable = true;
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  # # stylix.image = "/home/volceri/Pictures/wallpapers/wallpapers/apeiros/a_group_of_tall_buildings_with_clouds_in_the_sky.png";
-  # stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
-  # stylix.targets.grub.enable = false;
+  stylix.autoEnable = false;
+  stylix.enable = false ;
+  stylix.targets.grub.enable = false;
+
 }

@@ -37,6 +37,8 @@
     # common/optional/atuin.nix
     # common/optional/xdg.nix # file associations
     # common/optional/sops.nix
+
+    common/optional/stylix
   ];
 
   home = {

@@ -112,6 +112,7 @@
         homelab = lib.nixosSystem {
           inherit specialArgs;
           modules = [
+            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager {
               home-manager = {
                 useUserPackages = true;
@@ -179,8 +180,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Theming
-    stylix.url = "github:danth/stylix/release-24.11";
+    # Theming    
+    stylix.url = "github:danth/stylix";
     # rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
 
     # Alacritty theme
