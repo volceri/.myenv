@@ -1,4 +1,4 @@
-{ pkgs, ... }:{
+{ pkgs, configLib,... }:{
   programs.kitty = {
     enable = true;
     shellIntegration.enableZshIntegration = true;
@@ -26,9 +26,9 @@
       copy_on_select = true;
 
       dim_opacity = 0.2;
-      background_tint = 0.2;
-      
-      dynamic_background_opacity = true;
+      background_tint = 0.95;
+
+      dynamic_background_opacity = false;
 
 
       tab_bar_min_tabs = 1;
@@ -56,6 +56,7 @@
            tab_bar_style  powerline
            tab_title_template \uf489 {title}
            # tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.last_focused_progress_percent}{title}"
+           background_image /home/volceri/Pictures/wallpapers/314769.jpg
     '';
   };
 }
