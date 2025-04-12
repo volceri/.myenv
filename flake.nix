@@ -95,10 +95,7 @@
         work = lib.nixosSystem {
           inherit specialArgs;
           modules = [
-            # ({ pkgs, ...}: {
-            #   # install the overlay
-            #   nixpkgs.overlays = [ alacritty-theme.overlays.default ];
-            # })
+            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager {
               home-manager = {
                 useUserPackages = true;
@@ -187,8 +184,8 @@
     # Alacritty theme
     # alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
 
-#     nix-aws-okta.url = "git+ssh://git@git.naspersclassifieds.com/volceri.avila/nix-aws-okta.git?ref=main&shallow=2";
-#     nix-aws-okta.inputs = { };
+    # nix-aws-okta.url = "git+ssh://git@git.naspersclassifieds.com/volceri.avila/nix-aws-okta.git?ref=main&shallow=2";
+    # nix-aws-okta.inputs = { };
     #################### Personal Repositories ####################
 
     # Private secrets repo.  See ./docs/secretsmgmt.md
