@@ -33,7 +33,6 @@
       #################### Desktop ####################
       "hosts/common/optional/plasma6.nix" #Desktop Environment
 
-
       #Dev
       "hosts/common/optional/dev/go.nix"
       "hosts/common/optional/dev/docker.nix"
@@ -41,7 +40,6 @@
 
       #Tools
       "hosts/common/optional/tools/kalc.nix"
-      "hosts/common/optional/tools/korganizer.nix"
     ])
   ];
 
@@ -102,9 +100,7 @@
     enable = true;
   };
 
-  # stylix.enable = true;
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  # # stylix.image = "/home/volceri/Pictures/wallpapers/wallpapers/apeiros/a_group_of_tall_buildings_with_clouds_in_the_sky.png";
-  # stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
-  # stylix.targets.grub.enable = false;
+  stylix.autoEnable = false;
+  stylix.enable = false ;
+  stylix.targets.grub.enable = false;
 }
