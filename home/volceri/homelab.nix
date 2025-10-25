@@ -24,6 +24,7 @@
 
     common/optional/dev/direnv.nix
     common/optional/dev/go.nix
+    common/optional/dev/rust.nix
     common/optional/dev/python.nix
     common/optional/dev/postman.nix
     common/optional/dev/dbeaver.nix
