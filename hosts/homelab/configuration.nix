@@ -98,7 +98,7 @@
   '';
 
   stylix.autoEnable = false;
-  stylix.enable = true ;
+  stylix.enable = false ;
   stylix.targets.grub.enable = false;
-  stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
+
 }

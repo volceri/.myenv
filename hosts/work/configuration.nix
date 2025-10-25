@@ -26,6 +26,7 @@
       "hosts/common/optional/services/xserver.nix"
       "hosts/common/optional/services/printing.nix"
       "hosts/common/optional/services/flatpak.nix"
+      "hosts/common/optional/services/appimage.nix"
 
       #################### Display Manager ####################
       "hosts/common/optional/sddm.nix"
@@ -92,7 +93,10 @@
 
   networking.extraHosts =
   ''
-    127.0.0.1 myautovit.ro mystandvirtual.pt myotomoto.pl host.docker.internal myfake-apollo.com
+    127.0.0.1 local.stg.standvirtual.com mystandvirtual.pt
+    127.0.0.1 local.stg.otomoto.pl myotomoto.pl
+    127.0.0.1 myautovit.ro host.docker.internal myfake-apollo.com
+    192.168.86.58 lisbon
   '';
 
 
@@ -100,7 +104,37 @@
     enable = true;
   };
 
+  stylix.enable = true ;
   stylix.autoEnable = false;
-  stylix.enable = false ;
+  
   stylix.targets.grub.enable = false;
+  # stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
+
+  # # stylix.autoEnable = false;
+  #   # stylix.enable = true ;
+  #   # stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
+  #   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
+  #   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+  #   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+  #   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+  #   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/classic-dark.yaml";
+  #   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";
+  #   # stylix.image = "/home/volceri/Pictures/wallpapers/wallpapers/apeiros/a_group_of_tall_buildings_with_clouds_in_the_sky.png";
+
+  #   stylix.targets.kitty.enable = true;
+    
+  #   #VS Code
+  #   stylix.targets.vscode.enable = true;
+    
+  #   stylix.targets.neovim.enable = true;
+  #   # stylix.targets.bat.enable = true;
+  #   stylix.targets.starship.enable = true;
+  #   # stylix.targets.fzf.enable = true;    
+    
+  #   # stylix.targets.btop.enable = true;
+
+  #   stylix.targets.xresources.enable = true;    
+  #   stylix.targets.kde.enable = false;
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";
 }

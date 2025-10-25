@@ -55,6 +55,11 @@ in
   #   };
 
   networking.firewall.allowedTCPPorts = [ sshPort ];
-  programs.ssh.startAgent = true;
-  
+ 
+  programs = {
+    ssh.startAgent = true;
+    gnupg = {
+      agent.enable = true;
+    }; 
+  };
 }

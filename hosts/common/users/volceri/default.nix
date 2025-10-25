@@ -34,7 +34,7 @@ in
 
       packages = with pkgs; [ 
         pkgs.home-manager
-
+        
       ] ++ [
 #         inputs.nix-aws-okta.packages.${system}.default
       ]
