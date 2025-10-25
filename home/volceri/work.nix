@@ -58,7 +58,10 @@
       jetbrains.phpstorm
       jetbrains.goland
       docker-compose
-      notepadqq
+      terraform
+      lsof
+      inetutils
+      # notepadqq
     ];
 
      preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported

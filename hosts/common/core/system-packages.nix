@@ -14,5 +14,7 @@
     gcc
     exif
     xclip
+    traceroute
+    kubectl
   ];
 }

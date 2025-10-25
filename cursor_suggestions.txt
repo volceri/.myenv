@@ -1,0 +1,182 @@
+# NixOS Configuration Improvement Suggestions
+
+This document outlines suggested improvements for better organization and multi-machine management of your NixOS configuration.
+
+## 1. Improved Variables Structure
+Current: All variables in single vars/default.nix
+Suggested structure:
+vars/
+├── hosts/
+│ ├── work.nix
+│ ├── homelab.nix
+│ └── common.nix
+├── users/
+│ ├── work.nix
+│ ├── home.nix
+│ └── common.nix
+└── default.nix
+
+
+Benefits:
+- Separate host-specific variables
+- Common variables that can be inherited
+- Better user-specific settings management per environment
+- Easier addition of new machines
+
+## 2. Environment-Based Configuration
+Example implementation:
+
+```nix
+# vars/hosts/common.nix
+{
+  commonSettings = {
+    timezone = "Europe/Lisbon";
+    locale = "en_US.UTF-8";
+    networking.ports.tcp.ssh = 22;
+  };
+}
+
+# vars/hosts/work.nix
+{ lib, commonSettings, ... }: {
+  systemSettings = commonSettings // {
+    profile = "work";
+    hostname = "PT-OLX-PF5EHDHE";
+    workSpecificSettings = {
+      # Work-specific configurations
+    };
+  };
+}
+```
+
+## 3. Secret Management Enhancement
+Suggested structure:
+
+secrets/
+├── work/
+│ └── secrets.yaml
+├── homelab/
+│ └── secrets.yaml
+└── common/
+└── secrets.yaml
+
+
+- Implement using sops-nix
+- Separate secrets by environment
+- Common secrets shared across systems
+
+## 4. Hardware-Specific Configurations
+Suggested structure:
+hardware/
+├── profiles/
+│ ├── laptop.nix
+│ ├── desktop.nix
+│ └── server.nix
+└── specific/
+├── work-laptop.nix
+└── homelab-server.nix
+
+
+
+## 5. Module Organization
+Suggested structure:
+
+modules/
+├── core/ # Essential system configurations
+├── services/ # Service-specific modules
+├── development/ # Development environment modules
+├── desktop/ # Desktop environment modules
+└── profiles/ # Role-based configurations
+
+
+
+## 6. Profile-Based Configuration
+Implementation in flake.nix:
+```nix
+nixosConfigurations = 
+  let
+    mkSystem = profile: hostname: lib.nixosSystem {
+      inherit specialArgs;
+      modules = [
+        (./hosts + "/${profile}/configuration.nix")
+        (./vars/hosts + "/${hostname}.nix")
+        # ... other modules
+      ];
+    };
+  in
+  {
+    work-laptop = mkSystem "work" "work-laptop";
+    homelab-server = mkSystem "server" "homelab";
+    # ... other systems
+  };
+```
+
+## 7. Validation and Testing
+Suggested structure:
+
+
+checks/
+├── system/
+│ └── validate-config.nix
+├── network/
+│ └── validate-ports.nix
+└── hardware/
+└── validate-compatibility.nix
+
+
+## 8. Documentation Improvements
+Suggested structure:
+
+docs/
+├── machines/
+│ ├── work.md
+│ └── homelab.md
+├── setup/
+│ ├── new-machine.md
+│ └── migration.md
+└── maintenance/
+├── updates.md
+└── troubleshooting.md
+
+
+
+
+## 9. Deployment Scripts
+Suggested structure:
+
+scripts/
+├── deploy/
+│ ├── work.sh
+│ └── homelab.sh
+├── backup/
+│ └── system-backup.sh
+└── maintenance/
+└── update-all.sh
+
+
+## 10. Version Control Improvements
+- Add comprehensive .gitignore rules for machine-specific generated files
+- Implement git-crypt for sensitive files
+- Add pre-commit hooks for:
+  - Nix formatting
+  - Configuration validation
+  - Documentation updates
+
+## Benefits of Implementation
+
+These improvements will make your configuration:
+1. More maintainable
+2. Easier to scale with new machines
+3. Better organized for team collaboration
+4. More robust with validation and testing
+5. Better documented
+6. Easier to troubleshoot
+
+## Implementation Priority
+
+Suggested order of implementation:
+1. Variables Structure (Most immediate impact)
+2. Secret Management (Security critical)
+3. Hardware Configurations (Essential for multi-machine setup)
+4. Module Organization (Better maintainability)
+5. Documentation (Team collaboration)
+6. Remaining improvements (As needed)

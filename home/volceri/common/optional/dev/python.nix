@@ -1,9 +1,11 @@
 { pkgs, ...} : {
     home.packages = with pkgs; [
-        python311
-    ] ++
-    (with pkgs.python311Packages; [
+        (python311.withPackages (
+            ps: with ps; [ 
+                requests 
+                pyyaml 
+            ])
+        )
         pipx
-      ]
-    );
+    ];
 }

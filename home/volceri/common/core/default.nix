@@ -36,6 +36,13 @@
 #       wev # show wayland events. also handy for detecting keypress codes
       wget # downloader
       zip # zip compression
+
+      pdfpc # presentation tool with multi-screen support
+      screen-message # shows a fullscreen text (sm)
+      xournalpp # free-hand notes, drawings and PDF annotations
+      cheese # webcam app
+      inkscape # vector graphics editor
+      
       ;
   };
 

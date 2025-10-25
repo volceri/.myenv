@@ -7,6 +7,7 @@
 , ...
 }:
 {
+  # HOMELAB
   imports = lib.flatten [
     #################### Every Host Needs This ####################
     ./hardware-configuration.nix
@@ -96,9 +97,9 @@
   ''
     127.0.0.1 host.docker.internal
   '';
-
-  stylix.autoEnable = false;
   stylix.enable = true ;
+  stylix.autoEnable = false;
+
   stylix.targets.grub.enable = false;
-  stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/classic-dark.yaml";
 }

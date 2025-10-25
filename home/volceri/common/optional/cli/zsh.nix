@@ -11,7 +11,7 @@
 
     shellAliases = { };
 
-    initExtra = ''
+    initContent = ''
       source ~/.extra
     '';
   };

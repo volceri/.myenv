@@ -38,7 +38,6 @@
     # common/optional/atuin.nix
     # common/optional/xdg.nix # file associations
     # common/optional/sops.nix
-
     common/optional/stylix
   ];
 
@@ -57,7 +56,9 @@
 
     packages = with pkgs; [
       docker-compose
-      notepadqq
+      lsof
+      inetutils
+      # notepadqq
     ];
 
      preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported

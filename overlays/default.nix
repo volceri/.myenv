@@ -45,6 +45,12 @@ let
     #     };
     #   });
     #  zoom-us = (prev.zoom-us.override { pipewire = pipewire-zoom; });
+    
+    # Use newer GoLand from unstable while keeping everything else stable
+    jetbrains = prev.jetbrains // {
+      goland = final.unstable.jetbrains.goland;
+      phpstorm = final.unstable.jetbrains.phpstorm;
+    };
   };
 
   stable-packages = final: _prev: {

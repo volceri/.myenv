@@ -80,6 +80,9 @@ in
     enableCompletion = true;
   };
 
+  # mtr is a network diagnostic tool that combines ping and traceroute into one program.
+  programs.mtr.enable = true;
+
   # environment.shells = with pkgs; [ zsh ];
   # users.defaultUserShell = pkgs.zsh;
 
