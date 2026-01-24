@@ -12,6 +12,7 @@
 
     common/optional/cli/bat.nix
     common/optional/cli/fzf.nix
+    common/optional/cli/atuin.nix
     common/optional/cli/zsh.nix
     common/optional/cli/bash.nix
     common/optional/cli/aliases.nix
