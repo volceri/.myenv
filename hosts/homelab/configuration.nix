@@ -60,38 +60,33 @@
 
   system.stateVersion = "25.11"; # Did you read the comment?
 
-  # Bootloader.
-  boot = {
-    loader = {
-      systemd-boot = {
-        enable = false;
-      };
-#       efi = {
-#         canTouchEfiVariables = true;
-#         #efiSysMountPoint = "/boot";
-#       };
-      grub = {
-        enable = true;
-#         efiSupport = true;
-        device = "/dev/sda";
-        useOSProber = true;
+    # Bootloader
+    boot = {
+      loader = {
+        systemd-boot = {
+          enable = false;
+        };
+        grub = {
+          enable = true;
+          device = "/dev/sda";
+          useOSProber = true;
 
-        extraEntries            = ''
-          submenu "Power Options" {
-            menuentry "Reboot" {
-              reboot
+          extraEntries            = ''
+            submenu "Power Options" {
+              menuentry "Reboot" {
+                reboot
+              }
+              menuentry "Poweroff" {
+                halt
+              }
+              menuentry "UEFI Firmware Settings" {
+                fwsetup
+              }
             }
-            menuentry "Poweroff" {
-              halt
-            }
-            menuentry "UEFI Firmware Settings" {
-              fwsetup
-            }
-          }
-          '';
+            '';
+        };
       };
     };
-  };
 
 
   networking.extraHosts =

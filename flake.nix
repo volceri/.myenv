@@ -92,7 +92,7 @@
 
       nixosConfigurations = {
         # Main
-        work2 = lib.nixosSystem {
+        work = lib.nixosSystem {
           inherit specialArgs;
           modules = [
             stylix.nixosModules.stylix
