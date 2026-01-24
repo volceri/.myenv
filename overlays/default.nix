@@ -51,6 +51,16 @@ let
       goland = final.unstable.jetbrains.goland;
       phpstorm = final.unstable.jetbrains.phpstorm;
     };
+    
+    # Use unstable versions for development tools
+    dbeaver-bin = final.unstable.dbeaver-bin;
+    vscode = final.unstable.vscode;
+    vscode-extensions = final.unstable.vscode-extensions;
+    google-chrome = final.unstable.google-chrome;
+    firefox = final.unstable.firefox;
+    slack = final.unstable.slack;
+    starship = final.unstable.starship;
+    kitty = final.unstable.kitty;
   };
 
   stable-packages = final: _prev: {

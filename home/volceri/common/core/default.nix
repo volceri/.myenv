@@ -14,7 +14,7 @@
 
       # Packages that don't have custom configs go here
       btop # resource monitor
-      copyq # clipboard manager
+      # copyq # clipboard manager
       coreutils # basic gnu utils
       dust # disk usage
       findutils # find
@@ -118,7 +118,7 @@
   };
 
   home = {
-    stateVersion = "24.11";
+    stateVersion = "25.11";
   };
 
 }

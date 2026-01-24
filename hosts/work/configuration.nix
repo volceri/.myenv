@@ -7,7 +7,6 @@
 , ...
 }:
 {
-  # WORK
   imports = lib.flatten [
     #################### Every Host Needs This ####################
     ./hardware-configuration.nix
@@ -34,15 +33,17 @@
 
       #################### Desktop ####################
       "hosts/common/optional/plasma6.nix" #Desktop Environment
-
+      "hosts/common/optional/niri.nix" #Desktop Environment
 
       #Dev
-      "hosts/common/optional/dev/go.nix"
       "hosts/common/optional/dev/docker.nix"
       "hosts/common/optional/dev/mysql.nix"
 
       #Tools
       "hosts/common/optional/tools/kalc.nix"
+      
+      #Hardware
+      "hosts/common/optional/hardware/logitech.nix"
     ])
   ];
 
@@ -57,38 +58,13 @@
 
   programs.firefox.enable = true;
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
   
   # Bootloader.
   boot = {
     loader = {
-      systemd-boot = {
-        enable = false;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-        #efiSysMountPoint = "/boot";
-      };
-      grub = {
-        enable = true;
-        efiSupport = true;
-        devices = [ "nodev" ];
-        useOSProber = true;
-
-        extraEntries            = ''
-          submenu "Power Options" {
-            menuentry "Reboot" {
-              reboot
-            }
-            menuentry "Poweroff" {
-              halt
-            }
-            menuentry "UEFI Firmware Settings" {
-              fwsetup
-            }
-          }
-          '';
-      };
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
   };
 

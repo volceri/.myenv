@@ -4,6 +4,10 @@
 , ...
 }:
 {
+  imports = [
+    inputs.nix-sweep.nixosModules.default
+  ];
+
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
@@ -28,12 +32,17 @@
         "flakes"
       ];
       warn-dirty = false;
-    };
+    };       
+  };
 
-    # Garbage Collection
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 5d";
-    };
+  # Garbage Collection & Clean-up
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+
+  services.nix-sweep = {
+    enable = true;
+    removeOlder = "7d"; # Remove anything inactive for 7 days
+    gc = false; # Let nix.gc handle general garbage
+    interval = "weekly";
   };
 }
