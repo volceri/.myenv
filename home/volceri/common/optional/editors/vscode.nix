@@ -70,6 +70,9 @@
             "make" = true;
             "go" = true;
           };
+          
+          "chat.viewSessions.enabled" = false;
+          "chat.mcp.gallery.enabled"= true;
       };
     };
   };

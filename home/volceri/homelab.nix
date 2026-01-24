@@ -8,6 +8,7 @@
     #################### Host-specific Optional Configs ####################
     common/optional/editors/vscode.nix
     common/optional/editors/drawio.nix
+    common/optional/editors/libreoffice.nix
 
     common/optional/cli/bat.nix
     common/optional/cli/fzf.nix
@@ -20,21 +21,20 @@
     common/optional/terminal/kitty.nix
 
 #     common/optional/comms/slack.nix
-#     common/optional/comms/zoom.nix
+     common/optional/comms/zoom.nix
 
     common/optional/dev/direnv.nix
     common/optional/dev/go.nix
-    common/optional/dev/rust.nix
     common/optional/dev/python.nix
-    common/optional/dev/postman.nix
     common/optional/dev/dbeaver.nix
 
     # common/optional/desktops # default is hyprland
-    # common/optional/comms
     # common/optional/helper-scripts
     # common/optional/media
     # common/optional/tools
 
+    common/optional/bars/noctalia.nix
+    
     # common/optional/atuin.nix
     # common/optional/xdg.nix # file associations
     # common/optional/sops.nix
@@ -56,9 +56,19 @@
 
     packages = with pkgs; [
       docker-compose
+      terraform
       lsof
       inetutils
       # notepadqq
+      awscli #TODO: move to proper location
+      temurin-jre-bin-11  #TODO: move to proper location
+
+      fuzzel #TODO: move to proper location
+      swaylock #TODO: move to proper location
+
+      kdiff3 #TODO: move to proper location
+
+      gparted
     ];
 
      preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported

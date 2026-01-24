@@ -18,5 +18,6 @@
     workusername = "volceri.avila";
     name = "Volceri D'Avila";
     email = "volceri.davila@gmail.com";
+    signingKey = "3D154B08850D1043";
   };
 }

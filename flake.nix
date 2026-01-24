@@ -92,7 +92,7 @@
 
       nixosConfigurations = {
         # Main
-        work = lib.nixosSystem {
+        work2 = lib.nixosSystem {
           inherit specialArgs;
           modules = [
             stylix.nixosModules.stylix
@@ -139,7 +139,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # The next two are for pinning to stable vs unstable regardless of what the above is set to
     # See also 'stable-packages' and 'unstable-packages' overlays at 'overlays/default.nix"
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hardware.url = "github:nixos/nixos-hardware";
@@ -148,25 +148,34 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixpkgs-zoom.url = "nixpkgs/24.05";
-    nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
-    #################### Utilities ####################
+    # solaar = {
+    #   url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+    #   #url = "https://flakehub.com/f/Svenum/Solaar-Flake/0.1.7.tar.gz"; # uncomment line for solaar version 1.1.19
+    #   #url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    #################### Utilities ####################   
+    nix-sweep.url = "github:jzbor/nix-sweep";
+    nixpkgs-zoom.url = "nixpkgs/nixos-unstable";  # Use unstable for latest Zoom
+    # nixpkgs-zoom.url = "nixpkgs/25.11";
+    # nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
 
     # Declarative partitioning and  h
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#     disko = {
+#       url = "github:nix-community/disko";
+#       inputs.nixpkgs.follows = "nixpkgs";
+#     };
 
     # Secrets management. See ./docs/secretsmgmt.md
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#     sops-nix = {
+#       url = "github:mic92/sops-nix";
+#       inputs.nixpkgs.follows = "nixpkgs";
+#     };
 
     # vim4LMFQR!
     nixvim = {
-      #url = "github:nix-community/nixvim/nixos-24.11";
+      #url = "github:nix-community/nixvim/nixos-25.11";
       #inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -178,7 +187,7 @@
     };
 
     # Theming    
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:nix-community/stylix";
     # rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
 
     # Alacritty theme
@@ -186,6 +195,12 @@
 
     # nix-aws-okta.url = "git+ssh://git@git.naspersclassifieds.com/volceri.avila/nix-aws-okta.git?ref=main&shallow=2";
     # nix-aws-okta.inputs = { };
+
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #################### Personal Repositories ####################
 
     # Private secrets repo.  See ./docs/secretsmgmt.md

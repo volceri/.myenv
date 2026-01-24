@@ -7,8 +7,8 @@
     # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
     # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/classic-dark.yaml";
-    # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";
+    # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/classic-dark.yaml";
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";
     # stylix.image = "/home/volceri/Pictures/wallpapers/wallpapers/apeiros/a_group_of_tall_buildings_with_clouds_in_the_sky.png";
 
     stylix.targets.kitty.enable = true;

@@ -1,11 +1,12 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.go = {
     enable = true;
-    # env.GOPRIVATE = [
-    #     "git.naspersclassifieds.com"
-    # ];
-    goPrivate = [
+    env.GOPRIVATE = [
         "git.naspersclassifieds.com"
     ];
   };
+
+  home.packages = [
+    pkgs.golangci-lint
+  ];
 }

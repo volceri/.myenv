@@ -19,7 +19,7 @@
         vim = "nvim";
 
         #-------------- Nix ----------------- 
-        nixb = "sudo nixos-rebuild switch --flake /home/${configVars.userSettings.username}/.myenv#${configVars.systemSettings.profile}";
+        nixb = "nixos-rebuild switch --flake /home/${configVars.userSettings.username}/.myenv#${configVars.systemSettings.profile} --sudo";
     };
 in
 {

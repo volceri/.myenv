@@ -30,6 +30,7 @@ in
         "mysql"
         "scanner" # for print/scan"
         "lp" # for print/scan"
+        "input" # for solaar/logitech devices
       ];
 
       packages = with pkgs; [ 

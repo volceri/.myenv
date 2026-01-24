@@ -5,31 +5,32 @@ let
   # username = configVars.userSettings.username;
   name = configVars.userSettings.name;
   publicGitEmail = configVars.userSettings.email;
+  signingKey = configVars.userSettings.signingKey;
   # publicKey = "${config.home.homeDirectory}/.ssh/id_yubikey.pub";
 in
 {
   programs.git = {
     enable = true;
     # package = pkgs.gitAndTools.gitFull;
-    userName = name;
-    userEmail = publicGitEmail;
-    aliases = { };
-    extraConfig = {
+    settings = {
+      alias = { };
+      user.name = name;
+      user.email = publicGitEmail;
+
       log.showSignature = "true";
       init.defaultBranch = "main";
       pull.rebase = "false";
       url = {
-        # "ssh://git@github.com" = {
-        #   insteadOf = "https://github.com";
-        # };
+        "ssh://git@github.com" = {
+          insteadOf = "https://github.com";
+        };
         "ssh://git@git.naspersclassifieds.com/" = {
           insteadOf = "https://git.naspersclassifieds.com/";
         };
       };
 
-      # commit.gpgsign = true;
-      # gpg.format = "ssh";
-      # user.signing.key = "${publicKey}";
+      commit.gpgsign = true;
+      user.signingkey = signingKey;
       # Taken from https://github.com/clemak27/homecfg/blob/16b86b04bac539a7c9eaf83e9fef4c813c7dce63/modules/git/ssh_signing.nix#L14
       # gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
 

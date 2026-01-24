@@ -27,16 +27,17 @@
       "hosts/common/optional/services/xserver.nix"
       "hosts/common/optional/services/printing.nix"
       "hosts/common/optional/services/flatpak.nix"
+      "hosts/common/optional/services/appimage.nix"
 
       #################### Display Manager ####################
       "hosts/common/optional/sddm.nix"
 
       #################### Desktop ####################
       "hosts/common/optional/plasma6.nix" #Desktop Environment
-
+      "hosts/common/optional/niri.nix" #Desktop Environment
 
       #Dev
-      "hosts/common/optional/dev/go.nix"
+      # "hosts/common/optional/dev/go.nix"
       "hosts/common/optional/dev/docker.nix"
       "hosts/common/optional/dev/mysql.nix"
 
@@ -52,12 +53,12 @@
  */
 
   # If there is a conflict file that is backed up, use this extension
-  home-manager.backupFileExtension = "bkp";
+  home-manager.backupFileExtension = "backup";
 
 
   programs.firefox.enable = true;
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
   # Bootloader.
   boot = {
@@ -101,5 +102,6 @@
   stylix.autoEnable = false;
 
   stylix.targets.grub.enable = false;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/classic-dark.yaml";
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";
 }

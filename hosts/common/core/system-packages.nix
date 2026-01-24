@@ -8,6 +8,7 @@
     btop
     kdePackages.kate
     kdePackages.dolphin
+    kdePackages.kompare
     google-chrome
     gnumake
     libgcc
@@ -16,5 +17,8 @@
     xclip
     traceroute
     kubectl
+    file
+    atuin
+    gsettings-desktop-schemas
   ];
 }
