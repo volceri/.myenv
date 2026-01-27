@@ -1,12 +1,14 @@
-{ config
-, lib
-, pkgs
-, outputs
-, inputs
-, configLib
-, configVars
-, ...
-}: {
+{
+  config,
+  lib,
+  pkgs,
+  outputs,
+  inputs,
+  configLib,
+  configVars,
+  ...
+}:
+{
   imports = (configLib.scanPaths ./.) ++ (builtins.attrValues outputs.homeManagerModules);
 
   home.packages = builtins.attrValues {
@@ -19,21 +21,21 @@
       dust # disk usage
       findutils # find
       nix-tree # nix package tree viewer
-#       neofetch # fancier system info than pfetch
-#       ncdu # TUI disk usage
-#       pciutils
-#       pfetch # system info
-#       pre-commit # git hooks
+      #       neofetch # fancier system info than pfetch
+      #       ncdu # TUI disk usage
+      #       pciutils
+      #       pfetch # system info
+      #       pre-commit # git hooks
       p7zip # compression & encryption
       ripgrep # better grep
       # steam-run # for running non-NixOS-packaged binaries on Nix
       # usbutils
-      
+
       unzip # zip extraction
       unrar # rar extraction
-#       xdg-utils # provide cli tools such as `xdg-mime` and `xdg-open`
-#       xdg-user-dirs
-#       wev # show wayland events. also handy for detecting keypress codes
+      #       xdg-utils # provide cli tools such as `xdg-mime` and `xdg-open`
+      #       xdg-user-dirs
+      #       wev # show wayland events. also handy for detecting keypress codes
       wget # downloader
       zip # zip compression
 
@@ -42,31 +44,30 @@
       xournalpp # free-hand notes, drawings and PDF annotations
       cheese # webcam app
       inkscape # vector graphics editor
-      
+
       ;
   };
-
 
   # xdg = {
   #   enable = true;
   #   userDirs = {
   #     enable = true;
   #     createDirectories = true;
-      # desktop = "${config.home.homeDirectory}/.desktop";
-      # documents = "${config.home.homeDirectory}/documents";
-      # download = "${config.home.homeDirectory}/downloads";
-      # music = "${config.home.homeDirectory}/media/audio";
-      # pictures = "${config.home.homeDirectory}/media/images";
-      # videos = "${config.home.homeDirectory}/media/video";
-      # # publicshare = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
-      # # templates = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
+  # desktop = "${config.home.homeDirectory}/.desktop";
+  # documents = "${config.home.homeDirectory}/documents";
+  # download = "${config.home.homeDirectory}/downloads";
+  # music = "${config.home.homeDirectory}/media/audio";
+  # pictures = "${config.home.homeDirectory}/media/images";
+  # videos = "${config.home.homeDirectory}/media/video";
+  # # publicshare = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
+  # # templates = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
 
-      # extraConfig = {
-      #   # publicshare and templates defined as null here instead of as options because
-      #   XDG_PUBLICSHARE_DIR = "/var/empty";
-      #   XDG_TEMPLATES_DIR = "/var/empty";
-      # };
-    # };
+  # extraConfig = {
+  #   # publicshare and templates defined as null here instead of as options because
+  #   XDG_PUBLICSHARE_DIR = "/var/empty";
+  #   XDG_TEMPLATES_DIR = "/var/empty";
+  # };
+  # };
   #   portal = {
   #     enable = true;
   #     config.common.default = [
@@ -110,8 +111,6 @@
       warn-dirty = false;
     };
   };
-
-
 
   programs = {
     home-manager.enable = true;

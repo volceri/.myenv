@@ -1,5 +1,6 @@
-{ configVars
-, ...
+{
+  configVars,
+  ...
 }:
 let
   # username = configVars.userSettings.username;

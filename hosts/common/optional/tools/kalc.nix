@@ -1,7 +1,6 @@
-{ pkgs, ... }: {
-    environment.systemPackages = with pkgs; [
-      kdePackages.kcalc
-    ];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    kdePackages.kcalc
+  ];
 }
-
-

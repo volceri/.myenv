@@ -1,8 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.go = {
     enable = true;
     env.GOPRIVATE = [
-        "git.naspersclassifieds.com"
+      "git.naspersclassifieds.com"
     ];
   };
 

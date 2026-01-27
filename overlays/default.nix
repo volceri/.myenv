@@ -31,7 +31,7 @@ let
     #        (prev.lib.cmakeBool "USE_WAYLAND_CLIPBOARD" true)
     #      ];
     #    };
-    
+
     #  zoom-us = (prev.zoom-us.override { pipewire = pipewire-zoom; }).overrideAttrs (old: {
     #     src = prev.fetchurl {
     #       url = "https://zoom.us/client/6.0.2.4680/zoom_x86_64.pkg.tar.xz";
@@ -45,13 +45,13 @@ let
     #     };
     #   });
     #  zoom-us = (prev.zoom-us.override { pipewire = pipewire-zoom; });
-    
+
     # Use newer GoLand from unstable while keeping everything else stable
     jetbrains = prev.jetbrains // {
       goland = final.unstable.jetbrains.goland;
       phpstorm = final.unstable.jetbrains.phpstorm;
     };
-    
+
     # Use unstable versions for development tools
     dbeaver-bin = final.unstable.dbeaver-bin;
     vscode = final.unstable.vscode;
@@ -90,6 +90,5 @@ in
     // (modifications final prev)
     // (linuxModifications final prev)
     // (stable-packages final prev)
-    // (unstable-packages final prev)
-    ;
+    // (unstable-packages final prev);
 }

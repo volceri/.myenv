@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   systemSettings = rec {
     system = "x86_64-linux";
     hostname = "lisbon";

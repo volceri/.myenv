@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, configVars
-, ...
+{
+  pkgs,
+  lib,
+  configVars,
+  ...
 }:
 let
   sshPort = configVars.systemSettings.networking.ports.tcp.ssh;
@@ -55,11 +56,11 @@ in
   #   };
 
   networking.firewall.allowedTCPPorts = [ sshPort ];
- 
+
   programs = {
     # ssh.startAgent =  true;
     gnupg = {
       agent.enable = true;
-    }; 
+    };
   };
 }

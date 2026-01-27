@@ -1,7 +1,8 @@
-{ inputs
-, config
-, lib
-, ...
+{
+  inputs,
+  config,
+  lib,
+  ...
 }:
 {
   imports = [
@@ -32,7 +33,7 @@
         "flakes"
       ];
       warn-dirty = false;
-    };       
+    };
   };
 
   # Garbage Collection & Clean-up

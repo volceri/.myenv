@@ -1,4 +1,5 @@
-{ pkgs, configLib,... }:{
+{ pkgs, configLib, ... }:
+{
   programs.kitty = {
     enable = true;
     shellIntegration.enableZshIntegration = true;
@@ -15,7 +16,7 @@
       italic_font = "auto";
       scrollback_lines = 10000;
       font_size = 10;
-     
+
       cursor = "#c66e02";
       cursor_shape = "underline";
       cursor_beam_thickness = 1.5;
@@ -30,9 +31,8 @@
 
       dynamic_background_opacity = false;
 
-
       tab_bar_min_tabs = 1;
-      
+
       shell = "${pkgs.zsh}/bin/zsh";
 
       window_border_width = 2;
@@ -53,10 +53,10 @@
     #theme = "";
 
     extraConfig = ''
-           tab_bar_style  powerline
-           tab_title_template \uf489 {title}
-           # tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.last_focused_progress_percent}{title}"
-           background_image /home/volceri/Pictures/wallpapers/314769.jpg
+      tab_bar_style  powerline
+      tab_title_template \uf489 {title}
+      # tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.last_focused_progress_percent}{title}"
+      background_image /home/volceri/Pictures/wallpapers/314769.jpg
     '';
   };
 }

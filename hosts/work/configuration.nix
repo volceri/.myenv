@@ -1,10 +1,11 @@
-{ inputs
-, lib
-, configVars
-, configLib
-, pkgs
-, alacritty-theme
-, ...
+{
+  inputs,
+  lib,
+  configVars,
+  configLib,
+  pkgs,
+  alacritty-theme,
+  ...
 }:
 {
   imports = lib.flatten [
@@ -32,8 +33,8 @@
       "hosts/common/optional/sddm.nix"
 
       #################### Desktop ####################
-      "hosts/common/optional/plasma6.nix" #Desktop Environment
-      "hosts/common/optional/niri.nix" #Desktop Environment
+      "hosts/common/optional/plasma6.nix" # Desktop Environment
+      "hosts/common/optional/niri.nix" # Desktop Environment
 
       #Dev
       "hosts/common/optional/dev/docker.nix"
@@ -41,25 +42,24 @@
 
       #Tools
       "hosts/common/optional/tools/kalc.nix"
-      
+
       #Hardware
       "hosts/common/optional/hardware/logitech.nix"
     ])
   ];
 
-/*
-  # Force home-manager to use global packages
-  home-manager.useGlobalPkgs = true;
- */
- 
+  /*
+    # Force home-manager to use global packages
+    home-manager.useGlobalPkgs = true;
+  */
+
   # If there is a conflict file that is backed up, use this extension
   home-manager.backupFileExtension = "backup";
-
 
   programs.firefox.enable = true;
 
   system.stateVersion = "25.11"; # Did you read the comment?
-  
+
   # Bootloader.
   boot = {
     loader = {
@@ -68,23 +68,20 @@
     };
   };
 
-
-  networking.extraHosts =
-  ''
+  networking.extraHosts = ''
     127.0.0.1 local.stg.standvirtual.com mystandvirtual.pt
     127.0.0.1 local.stg.otomoto.pl myotomoto.pl
     127.0.0.1 myautovit.ro host.docker.internal myfake-apollo.com
     192.168.86.58 lisbon
   '';
 
-
   services.fprintd = {
     enable = true;
   };
 
-  stylix.enable = true ;
+  stylix.enable = true;
   stylix.autoEnable = false;
-  
+
   stylix.targets.grub.enable = false;
   # stylix.image = (configLib.relativeToRoot "assets/wallpapers/a_group_of_tall_buildings_with_clouds_in_the_sky.png");
 
@@ -100,18 +97,18 @@
   #   # stylix.image = "/home/volceri/Pictures/wallpapers/wallpapers/apeiros/a_group_of_tall_buildings_with_clouds_in_the_sky.png";
 
   #   stylix.targets.kitty.enable = true;
-    
+
   #   #VS Code
   #   stylix.targets.vscode.enable = true;
-    
+
   #   stylix.targets.neovim.enable = true;
   #   # stylix.targets.bat.enable = true;
   #   stylix.targets.starship.enable = true;
-  #   # stylix.targets.fzf.enable = true;    
-    
+  #   # stylix.targets.fzf.enable = true;
+
   #   # stylix.targets.btop.enable = true;
 
-  #   stylix.targets.xresources.enable = true;    
+  #   stylix.targets.xresources.enable = true;
   #   stylix.targets.kde.enable = false;
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";

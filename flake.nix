@@ -48,7 +48,7 @@
       #   import ./pkgs { inherit pkgs; }
       # );
 
-       packages = forAllSystems (
+      packages = forAllSystems (
         system:
         let
           pkgs = import nixpkgs {
@@ -74,14 +74,14 @@
       # );
 
       # Nix formatter available through 'nix fmt' https://nix-community.github.io/nixpkgs-fmt
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
       # # ################### DevShell ####################
       # #
       # # Custom shell for bootstrapping on new hosts, modifying nix-config, and secrets management
       devShells = forAllSystems (
         system:
-        import ./shell.nix { 
+        import ./shell.nix {
           pkgs = nixpkgs.legacyPackages.${system};
         }
       );
@@ -96,7 +96,8 @@
           inherit specialArgs;
           modules = [
             stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = specialArgs;
@@ -110,7 +111,8 @@
           inherit specialArgs;
           modules = [
             stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager = {
                 useUserPackages = true;
                 extraSpecialArgs = specialArgs;
@@ -155,23 +157,23 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    #################### Utilities ####################   
+    #################### Utilities ####################
     nix-sweep.url = "github:jzbor/nix-sweep";
-    nixpkgs-zoom.url = "nixpkgs/nixos-unstable";  # Use unstable for latest Zoom
+    nixpkgs-zoom.url = "nixpkgs/nixos-unstable"; # Use unstable for latest Zoom
     # nixpkgs-zoom.url = "nixpkgs/25.11";
     # nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
 
     # Declarative partitioning and  h
-#     disko = {
-#       url = "github:nix-community/disko";
-#       inputs.nixpkgs.follows = "nixpkgs";
-#     };
+    #     disko = {
+    #       url = "github:nix-community/disko";
+    #       inputs.nixpkgs.follows = "nixpkgs";
+    #     };
 
     # Secrets management. See ./docs/secretsmgmt.md
-#     sops-nix = {
-#       url = "github:mic92/sops-nix";
-#       inputs.nixpkgs.follows = "nixpkgs";
-#     };
+    #     sops-nix = {
+    #       url = "github:mic92/sops-nix";
+    #       inputs.nixpkgs.follows = "nixpkgs";
+    #     };
 
     # vim4LMFQR!
     nixvim = {
@@ -186,7 +188,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Theming    
+    # Theming
     stylix.url = "github:nix-community/stylix";
     # rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
 
@@ -195,7 +197,6 @@
 
     # nix-aws-okta.url = "git+ssh://git@git.naspersclassifieds.com/volceri.avila/nix-aws-okta.git?ref=main&shallow=2";
     # nix-aws-okta.inputs = { };
-
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";

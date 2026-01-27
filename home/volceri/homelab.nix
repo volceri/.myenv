@@ -16,13 +16,13 @@
     common/optional/cli/zsh.nix
     common/optional/cli/bash.nix
     common/optional/cli/aliases.nix
-#     common/optional/cli/aliases_work.nix
+    #     common/optional/cli/aliases_work.nix
     common/optional/cli/starship.nix
 
     common/optional/terminal/kitty.nix
 
-#     common/optional/comms/slack.nix
-     common/optional/comms/zoom.nix
+    #     common/optional/comms/slack.nix
+    common/optional/comms/zoom.nix
 
     common/optional/dev/direnv.nix
     common/optional/dev/go.nix
@@ -35,7 +35,7 @@
     # common/optional/tools
 
     common/optional/bars/noctalia.nix
-    
+
     # common/optional/atuin.nix
     # common/optional/xdg.nix # file associations
     # common/optional/sops.nix
@@ -61,18 +61,18 @@
       lsof
       inetutils
       # notepadqq
-      awscli #TODO: move to proper location
-      temurin-jre-bin-11  #TODO: move to proper location
+      awscli # TODO: move to proper location
+      temurin-jre-bin-11 # TODO: move to proper location
 
-      fuzzel #TODO: move to proper location
-      swaylock #TODO: move to proper location
+      fuzzel # TODO: move to proper location
+      swaylock # TODO: move to proper location
 
-      kdiff3 #TODO: move to proper location
+      kdiff3 # TODO: move to proper location
 
       gparted
     ];
 
-     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
+    preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };
 
 }

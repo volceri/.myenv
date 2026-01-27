@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     eza # Better ls
     ripgrep # Better grep
@@ -12,5 +13,5 @@
     curl
     tree # cli dir tree viewer
   ];
-  
+
 }

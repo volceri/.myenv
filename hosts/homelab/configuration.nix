@@ -1,10 +1,11 @@
-{ inputs
-, lib
-, configVars
-, configLib
-, pkgs
-, alacritty-theme
-, ...
+{
+  inputs,
+  lib,
+  configVars,
+  configLib,
+  pkgs,
+  alacritty-theme,
+  ...
 }:
 {
   # HOMELAB
@@ -33,8 +34,8 @@
       "hosts/common/optional/sddm.nix"
 
       #################### Desktop ####################
-      "hosts/common/optional/plasma6.nix" #Desktop Environment
-      "hosts/common/optional/niri.nix" #Desktop Environment
+      "hosts/common/optional/plasma6.nix" # Desktop Environment
+      "hosts/common/optional/niri.nix" # Desktop Environment
 
       #Dev
       # "hosts/common/optional/dev/go.nix"
@@ -47,14 +48,13 @@
     ])
   ];
 
-/*
-  # Force home-manager to use global packages
-  home-manager.useGlobalPkgs = true;
- */
+  /*
+    # Force home-manager to use global packages
+    home-manager.useGlobalPkgs = true;
+  */
 
   # If there is a conflict file that is backed up, use this extension
   home-manager.backupFileExtension = "backup";
-
 
   programs.firefox.enable = true;
 
@@ -71,7 +71,7 @@
         device = "/dev/sda";
         useOSProber = true;
 
-        extraEntries            = ''
+        extraEntries = ''
           submenu "Power Options" {
             menuentry "Reboot" {
               reboot
@@ -83,17 +83,15 @@
               fwsetup
             }
           }
-          '';
+        '';
       };
     };
   };
 
-
-  networking.extraHosts =
-  ''
+  networking.extraHosts = ''
     127.0.0.1 host.docker.internal
   '';
-  stylix.enable = true ;
+  stylix.enable = true;
   stylix.autoEnable = false;
 
   stylix.targets.grub.enable = false;

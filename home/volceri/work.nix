@@ -46,7 +46,7 @@
     username = configVars.userSettings.username;
     homeDirectory = "/home/" + configVars.userSettings.username;
     file = { };
-    
+
     sessionVariables = {
       VISUAL = "nvim";
       EDITOR = "nvim";
@@ -64,18 +64,18 @@
       lsof
       inetutils
       # notepadqq
-      awscli #TODO: move to proper location
-      temurin-jre-bin-11  #TODO: move to proper location
+      awscli # TODO: move to proper location
+      temurin-jre-bin-11 # TODO: move to proper location
 
-      fuzzel #TODO: move to proper location
-      swaylock #TODO: move to proper location
+      fuzzel # TODO: move to proper location
+      swaylock # TODO: move to proper location
 
-      kdiff3 #TODO: move to proper location
+      kdiff3 # TODO: move to proper location
 
       gparted
     ];
 
-     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
+    preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };
-  
+
 }

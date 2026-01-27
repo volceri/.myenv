@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
-  
+{ pkgs, ... }:
+{
+
   services.printing = {
     enable = true;
-    drivers = [ pkgs.hplip ]; 
+    drivers = [ pkgs.hplip ];
   };
-  
+
   # Enable autodiscovery of network printers
   services.avahi = {
     enable = true;

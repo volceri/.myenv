@@ -1,11 +1,12 @@
-{ pkgs
+{
+  pkgs,
 
-, config
-, lib
-, configVars
-, configLib
-, inputs
-, ...
+  config,
+  lib,
+  configVars,
+  configLib,
+  inputs,
+  ...
 }:
 let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
@@ -20,28 +21,32 @@ in
   users.users.${configVars.userSettings.username} = {
     isNormalUser = true;
     description = configVars.userSettings.name;
-    extraGroups =
-      [ "wheel" "networkmanager" ]
-      ++ ifTheyExist [
-        "audio"
-        "video"
-        "docker"
-        "git"
-        "mysql"
-        "scanner" # for print/scan"
-        "lp" # for print/scan"
-        "input" # for solaar/logitech devices
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ]
+    ++ ifTheyExist [
+      "audio"
+      "video"
+      "docker"
+      "git"
+      "mysql"
+      "scanner" # for print/scan"
+      "lp" # for print/scan"
+      "input" # for solaar/logitech devices
+    ];
+
+    packages =
+      with pkgs;
+      [
+        pkgs.home-manager
+
+      ]
+      ++ [
+        #         inputs.nix-aws-okta.packages.${system}.default
       ];
 
-      packages = with pkgs; [ 
-        pkgs.home-manager
-        
-      ] ++ [
-#         inputs.nix-aws-okta.packages.${system}.default
-      ]
-      ;
-
-      # shell = pkgs.zsh; # default shell
+    # shell = pkgs.zsh; # default shell
 
     # openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);
     # hashedPasswordFile = config.sops.secrets.gabriel-password.path;

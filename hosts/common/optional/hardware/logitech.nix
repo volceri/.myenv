@@ -1,38 +1,39 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     solaar
   ];
 
   services.udev.extraRules = ''
-# Allows non-root users to have raw access to Logitech devices.
-# Allowing users to write to the device is potentially dangerous
-# because they could perform firmware updates.
-KERNEL=="uinput", SUBSYSTEM=="misc", MODE="0660", GROUP="input", TAG+="uaccess", OPTIONS+="static_node=uinput"
+    # Allows non-root users to have raw access to Logitech devices.
+    # Allowing users to write to the device is potentially dangerous
+    # because they could perform firmware updates.
+    KERNEL=="uinput", SUBSYSTEM=="misc", MODE="0660", GROUP="input", TAG+="uaccess", OPTIONS+="static_node=uinput"
 
-ACTION=="remove", GOTO="solaar_end"
-SUBSYSTEM!="hidraw", GOTO="solaar_end"
+    ACTION=="remove", GOTO="solaar_end"
+    SUBSYSTEM!="hidraw", GOTO="solaar_end"
 
-# USB-connected Logitech receivers and devices
-ATTRS{idVendor}=="046d", GOTO="solaar_apply"
+    # USB-connected Logitech receivers and devices
+    ATTRS{idVendor}=="046d", GOTO="solaar_apply"
 
-# Lenovo nano receiver
-ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6042", GOTO="solaar_apply"
+    # Lenovo nano receiver
+    ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6042", GOTO="solaar_apply"
 
-# Bluetooth-connected Logitech devices
-KERNELS=="0005:046D:*", GOTO="solaar_apply"
+    # Bluetooth-connected Logitech devices
+    KERNELS=="0005:046D:*", GOTO="solaar_apply"
 
-GOTO="solaar_end"
+    GOTO="solaar_end"
 
-LABEL="solaar_apply"
+    LABEL="solaar_apply"
 
-# Allow any seated user to access the receiver.
-# uaccess: modern ACL-enabled udev
-TAG+="uaccess"
+    # Allow any seated user to access the receiver.
+    # uaccess: modern ACL-enabled udev
+    TAG+="uaccess"
 
-# Grant members of the "plugdev" group access to receiver (useful for SSH users)
-#MODE="0660", GROUP="plugdev"
+    # Grant members of the "plugdev" group access to receiver (useful for SSH users)
+    #MODE="0660", GROUP="plugdev"
 
-LABEL="solaar_end"
-# vim: ft=udevrules
+    LABEL="solaar_end"
+    # vim: ft=udevrules
   '';
 }

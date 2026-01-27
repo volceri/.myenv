@@ -11,7 +11,10 @@ let
 
   #FIXME:(configLib) switch this and other instances to configLib function
   homeDirectory =
-    if pkgs.stdenv.isLinux then "/home/${configVars.userSettings.username}" else "/Users/${configVars.userSettings.username}";
+    if pkgs.stdenv.isLinux then
+      "/home/${configVars.userSettings.username}"
+    else
+      "/Users/${configVars.userSettings.username}";
 in
 {
   imports = lib.flatten [

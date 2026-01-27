@@ -1,4 +1,9 @@
-{ pkgs, lib, configVars, ... }:
+{
+  pkgs,
+  lib,
+  configVars,
+  ...
+}:
 
 {
   # virtualisation.docker.rootless = {
@@ -9,12 +14,11 @@
   #   };
   # };
 
-
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
     autoPrune.enable = true;
-    # extraOptions = 
+    # extraOptions =
     # ''--add-host host.docker.internal:host-gateway'';
   };
 

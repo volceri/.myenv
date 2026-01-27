@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
-    environment.systemPackages = with pkgs; [
-      kdePackages.korganizer
-      kdePackages.kdepim-addons
-    ];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    kdePackages.korganizer
+    kdePackages.kdepim-addons
+  ];
 }
