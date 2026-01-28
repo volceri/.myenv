@@ -36,6 +36,9 @@
 
       # Reload completion system to apply case-insensitive settings
       autoload -Uz compinit && compinit
+
+      # Add Go bin to PATH
+      export PATH=$PATH:$(go env GOPATH)/bin
     '';
 
     plugins = [

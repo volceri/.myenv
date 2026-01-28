@@ -1,10 +1,7 @@
 {
-  inputs,
   lib,
-  configVars,
   configLib,
   pkgs,
-  alacritty-theme,
   ...
 }:
 {
@@ -38,7 +35,6 @@
       "hosts/common/optional/niri.nix" # Desktop Environment
 
       #Dev
-      # "hosts/common/optional/dev/go.nix"
       "hosts/common/optional/dev/docker.nix"
       "hosts/common/optional/dev/mysql.nix"
 
@@ -91,10 +87,14 @@
   networking.extraHosts = ''
     127.0.0.1 host.docker.internal
   '';
+
+  # Create symlink for /bin/bash to fix scripts expecting it
+  systemd.tmpfiles.rules = [
+    "L /bin/bash - - - - /run/current-system/sw/bin/bash"
+  ];
+
   stylix.enable = true;
   stylix.autoEnable = false;
-
   stylix.targets.grub.enable = false;
-
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/circus.yaml";
 }

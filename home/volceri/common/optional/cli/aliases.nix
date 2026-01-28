@@ -26,6 +26,9 @@ let
     vi = "nvim";
     vim = "nvim";
 
+    #--------------GIT-----------------
+    g = "git";
+
     #-------------- Nix -----------------
     nixb = "nixos-rebuild switch --flake /home/${configVars.userSettings.username}/.myenv#${configVars.systemSettings.profile} --sudo";
   };

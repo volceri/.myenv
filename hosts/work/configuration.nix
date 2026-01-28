@@ -75,6 +75,11 @@
     192.168.86.58 lisbon
   '';
 
+  # Create symlink for /bin/bash to fix scripts expecting it
+  systemd.tmpfiles.rules = [
+    "L /bin/bash - - - - /run/current-system/sw/bin/bash"
+  ];
+
   services.fprintd = {
     enable = true;
   };

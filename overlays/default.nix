@@ -61,6 +61,7 @@ let
     slack = final.unstable.slack;
     starship = final.unstable.starship;
     kitty = final.unstable.kitty;
+    bruno = final.unstable.bruno;
   };
 
   stable-packages = final: _prev: {

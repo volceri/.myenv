@@ -16,29 +16,21 @@
     common/optional/cli/zsh.nix
     common/optional/cli/bash.nix
     common/optional/cli/aliases.nix
-    #     common/optional/cli/aliases_work.nix
     common/optional/cli/starship.nix
 
     common/optional/terminal/kitty.nix
 
-    #     common/optional/comms/slack.nix
+    common/optional/comms/slack.nix
     common/optional/comms/zoom.nix
 
     common/optional/dev/direnv.nix
     common/optional/dev/go.nix
     common/optional/dev/python.nix
     common/optional/dev/dbeaver.nix
-
-    # common/optional/desktops # default is hyprland
-    # common/optional/helper-scripts
-    # common/optional/media
-    # common/optional/tools
+    common/optional/dev/bruno.nix
 
     common/optional/bars/noctalia.nix
 
-    # common/optional/atuin.nix
-    # common/optional/xdg.nix # file associations
-    # common/optional/sops.nix
     common/optional/stylix
   ];
 

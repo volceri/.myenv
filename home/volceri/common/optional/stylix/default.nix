@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   lib,
   configVars,
   configLib,

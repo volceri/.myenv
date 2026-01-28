@@ -14,7 +14,128 @@ in
     enable = true;
     # package = pkgs.gitAndTools.gitFull;
     settings = {
-      alias = { };
+      alias = {
+        # ---- General ----
+        al = "config --get-regexp ^alias";
+
+        # ---- Status & context ----
+
+        # Short status + branch + ahead/behind
+        # Example: git st
+        st = "status -sb";
+
+        # List local branches with last commit
+        # Example: git br
+        br = "branch -v";
+
+        # ---- Branch navigation ----
+
+        # Switch branches (modern replacement for checkout)
+        # Example: git sw main
+        sw = "switch";
+
+        # Checkout (still useful for files, older muscle memory)
+        # Example: git co develop
+        co = "checkout";
+
+        # Create and switch to a new branch
+        # Example: git cb feature/login
+        cb = "checkout -b";
+
+        # Delete branch safely (refuses if not merged)
+        # Example: git bd feature/login
+        bd = "branch -d";
+
+        # Force delete branch (dangerous)
+        # Example: git bD feature/login
+        bD = "branch -D";
+
+        # ---- Staging ----
+
+        # Stage all changes (tracked + untracked)
+        # Example: git aa
+        aa = "add -A";
+
+        # Interactive / partial staging (very useful)
+        # Example: git ap
+        ap = "add -p";
+
+        # ---- Commits (signed)----
+
+        # Commit with message (signed)
+        # Example: git cm \"Fix login bug\"
+        c = "commit -S";
+
+        # Commit with message (signed)
+        # Example: git cm \"Fix login bug\"
+        cm = "commit -S -m";
+
+        # Amend last commit (signed; edit message or content)
+        # Example: git ca
+        ca = "commit -S --amend";
+
+        # Amend last commit without changing message (signed)
+        # Example: git caa
+        caa = "commit -S --amend --no-edit";
+        # ---- Logs & history ----
+
+        # Pretty, compact commit log
+        # Example: git lg
+        lg = "log --oneline --graph --decorate";
+
+        # Same as lg, but across all branches
+        # Example: git lga
+        lga = "log --oneline --graph --decorate --all";
+
+        # Show full details of last commit
+        # Example: git last
+        last = "log -1 HEAD";
+
+        # ---- Remotes & syncing ----
+
+        # Pull changes from remote
+        # Example: git p
+        p = "pull";
+
+        # Pull using rebase (keeps history linear)
+        # Example: git pl
+        pl = "pull --rebase";
+
+        # Push current branch
+        # Example: git ps
+        ps = "push";
+
+        # Push and set upstream to origin
+        # Example: git psu
+        psu = "push -u origin HEAD";
+
+        # ---- Recovery & cleanup ----
+
+        # Undo last commit, keep changes staged
+        # Example: git undo
+        undo = "reset --soft HEAD~1";
+
+        # Unstage files without losing changes
+        # Example: git unstage file.txt
+        unstage = "reset HEAD --";
+
+        # Discard local changes to files (destructive!)
+        # Example: git discard file.txt
+        discard = "checkout --";
+
+        # ---- Merge helpers ----
+
+        # List files with merge conflicts
+        # Example: git conflicts
+        conflicts = "diff --name-only --diff-filter=U";
+
+        # ---- Stash ----
+        s = "stash";
+        sa = "stash apply";
+        sa0 = "stash apply stash@{0}";
+
+      };
+
       user.name = name;
       user.email = publicGitEmail;
 

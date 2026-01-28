@@ -28,6 +28,9 @@
       # Additional history settings
       shopt -s histappend
       PROMPT_COMMAND="history -a; history -n"
+
+      # Add Go bin to PATH
+      export PATH=$PATH:$(go env GOPATH)/bin
     '';
   };
 }

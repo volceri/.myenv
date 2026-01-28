@@ -28,6 +28,7 @@
     common/optional/dev/go.nix
     common/optional/dev/python.nix
     common/optional/dev/dbeaver.nix
+    common/optional/dev/bruno.nix
 
     # common/optional/desktops # default is hyprland
     # common/optional/helper-scripts

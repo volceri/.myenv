@@ -12,6 +12,6 @@ let
 in
 {
   home.packages = [
-    pkgs.zoom-us
+    zoom-with-portal
   ];
 }

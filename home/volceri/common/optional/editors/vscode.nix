@@ -28,7 +28,7 @@
         "git.confirmSync" = lib.mkForce false;
         "workbench.editor.enablePreview" = lib.mkForce false;
         "editor.minimap.enabled" = false;
-
+        "editor.formatOnSave" = "nix";
         "editor.language.brackets" = [
           [
             "["
@@ -103,6 +103,17 @@
 
         "chat.viewSessions.enabled" = false;
         "chat.mcp.gallery.enabled" = true;
+        "nix" = {
+          "enableLanguageServer" = true;
+          "serverPath" = "nil";
+          "serverSettings" = {
+            "nil" = {
+              "formatting" = {
+                "command" = [ "nixfmt" ];
+              };
+            };
+          };
+        };
       };
     };
   };

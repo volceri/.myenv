@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     zsh
@@ -20,6 +23,8 @@
     kubectl
     file
     atuin
-    gsettings-desktop-schemas
+    nixfmt # Formatter
+    nil # Language Server
+    go
   ];
 }
